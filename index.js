@@ -3,16 +3,23 @@ const debug = require("debug")("calculator:server");
 const chalk = require("chalk");
 const http = require("http");
 const url = require("url");
+const { program } = require("commander");
 const errorResponse = require("./errorResponse");
 const exitProcessMessage = require("./exitProcessMessage");
 const operations = require("./operations");
 const twoNumbersResponse = require("./twoNumbersResponse");
 
+program.option("-p, --port <number>");
+program.parse();
+const customPort = program.opts();
+const parsedCustomPort = parseInt(customPort.port);
+debug(parsedCustomPort);
+
 const server = http.createServer();
 
-const port = process.env.SERVER_PORT || 5173;
+const port = parsedCustomPort || process.env.SERVER_PORT || 5173;
 
-server.listen(5173, () => {
+server.listen(port, () => {
   debug(
     chalk.bgBlack.green(
       `Server is up in ${chalk.yellow(`http://localhost:${port}/calculator/`)}`
