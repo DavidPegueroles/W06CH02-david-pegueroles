@@ -1,5 +1,3 @@
-const chalk = require("chalk");
-
 const operations = (a, b) => {
   return {
     sumResult: a + b,
