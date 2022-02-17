@@ -8,6 +8,7 @@ const errorResponse = require("./errorResponse");
 const exitProcessMessage = require("./exitProcessMessage");
 const operations = require("./operations");
 const twoNumbersResponse = require("./twoNumbersResponse");
+const notFoundError = require("./notFoundError");
 
 program.option("-p, --port <number>");
 program.parse();
@@ -39,15 +40,23 @@ server.on("request", (request, response) => {
     response.statusCode = 200;
     response.setHeader("Content-type", "text/html");
     response.write(twoNumbersResponse(aNumber, bNumber, results));
+  } else if (request.url === "/calculator/" || request.url === "/calculator") {
+    response.statusCode = 400;
+    response.setHeader("Content-type", "text/html");
+    response.write(errorResponse);
   } else {
     response.statusCode = 404;
     response.setHeader("Content-type", "text/html");
-    response.write(errorResponse);
+    response.write(notFoundError);
   }
 
   response.end();
 
-  if (isNaN(aNumber) && isNaN(bNumber)) {
+  if (
+    isNaN(aNumber) &&
+    isNaN(bNumber) &&
+    (request.url === "/calculator/" || request.url === "/calculator")
+  ) {
     debug(exitProcessMessage);
     process.exit(0);
   }
