@@ -9,19 +9,19 @@ const twoNumbersResponse = (a, b, results) => `
     </p>
 
   <p style="color:#00d0ff;font-size:25px">
-    <span style="color:#f0e43e">${a}</span> +
+    <span style="color:#f0e43e">${a}</span> -
     <span style="color:#fc2b78">${b}</span> =
     <span style="color:#57ff5f">${results.restResult}</span>
     </p>
 
   <p style="color:#00d0ff;font-size:25px">
-    <span style="color:#f0e43e">${a}</span> +
+    <span style="color:#f0e43e">${a}</span> *
     <span style="color:#fc2b78">${b}</span> =
     <span style="color:#57ff5f">${results.multiplicationResult}</span>
     </p>
 
   <p style="color:#00d0ff;font-size:25px">
-    <span style="color:#f0e43e">${a}</span> +
+    <span style="color:#f0e43e">${a}</span> /
     <span style="color:#fc2b78">${b}</span> =
     <span style="color:#57ff5f">${results.divideResult}</span>
     </p>
